@@ -1,0 +1,57 @@
+all:
+  hosts:
+    dev-node-192-168-5-174:      
+      ansible_host: 192.168.5.174
+      ip: 192.168.5.174
+      access_ip: 192.168.5.174
+      ansible_ssh_user: iotadmin
+    dev-node-192-168-5-109:
+      ansible_host: 192.168.5.109
+      ip: 192.168.5.109
+      access_ip: 192.168.5.109
+      ansible_ssh_user: iotadmin
+    dev-node-192-168-5-110:
+      ansible_host: 192.168.5.110
+      ip: 192.168.5.110
+      access_ip: 192.168.5.110
+      ansible_ssh_user: iotadmin
+    dev-node-192-168-5-162:
+      ansible_host: 192.168.5.162
+      ip: 192.168.5.162
+      access_ip: 192.168.5.162
+      ansible_ssh_user: iotadmin
+    dev-node-192-168-5-163:
+      ansible_host: 192.168.5.163
+      ip: 192.168.5.163
+      access_ip: 192.168.5.163
+      ansible_ssh_user: iotadmin
+    dev-node-192-168-5-41:
+      ansible_host: 192.168.5.41
+      ip: 192.168.5.41
+      access_ip: 192.168.5.41
+      ansible_ssh_user: iotadmin
+  children:
+    kube_control_plane:
+      hosts:
+        dev-node-192-168-5-109:
+        dev-node-192-168-5-110:
+        dev-node-192-168-5-162:
+    kube_node:
+      hosts:
+        dev-node-192-168-5-109:
+        dev-node-192-168-5-110:
+        dev-node-192-168-5-162:
+        dev-node-192-168-5-163:
+        dev-node-192-168-5-41:
+        dev-node-192-168-5-174:
+    etcd:
+      hosts:
+        dev-node-192-168-5-109:
+        dev-node-192-168-5-110:
+        dev-node-192-168-5-162:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
