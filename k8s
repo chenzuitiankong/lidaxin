@@ -1,0 +1,2 @@
+# K8S 里启动 curl  pod 调试
+kubectl run mycurlpod --image=curlimages/curl -i --tty -- sh
